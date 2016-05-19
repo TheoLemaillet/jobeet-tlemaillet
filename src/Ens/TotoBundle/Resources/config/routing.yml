@@ -1,0 +1,3 @@
+ens_toto_homepage:
+    path:     /
+    defaults: { _controller: EnsTotoBundle:Default:index }
