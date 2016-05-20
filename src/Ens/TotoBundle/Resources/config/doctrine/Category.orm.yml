@@ -1,6 +1,7 @@
 # src/Ens/TotoBundle/Resources/config/doctrine/Category.orm.yml
 Ens\TotoBundle\Entity\Category:
   type: entity
+  repositoryClass: Ens\TotoBundle\Repository\CategoryRepository
   table: category
   id:
     id:

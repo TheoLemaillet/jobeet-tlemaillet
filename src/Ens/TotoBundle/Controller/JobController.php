@@ -22,18 +22,36 @@ class JobController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $jobs = $em->getRepository('EnsTotoBundle:Job')->getActiveJobs();
-
-        /*$query = $em->createQuery(
-            'SELECT j FROM EnsTotoBundle:Job j WHERE j.expires_at > :date'
-        )->setParameter('date', date('Y-m-d H:i:s', time()));
-        $jobs = $query->getResult();*/
-
         //$jobs = $em->getRepository('EnsTotoBundle:Job')->findAll();
 
+        /*
+        $query = $em->createQuery(
+          'SELECT j FROM EnsTotoBundle:Job j WHERE j.expires_at > :date'
+        )->setParameter('date', date('Y-m-d H:i:s', time()));
+        $jobs = $query->getResult();
+        */
+
+        //$jobs = $em->getRepository('EnsTotoBundle:Job')->getActiveJobs();
+
+        /*
         return $this->render('job/index.html.twig', array(
             'jobs' => $jobs,
         ));
+        */
+
+
+        $categories = $em->getRepository('EnsTotoBundle:Category')->getWithJobs();
+        foreach($categories as $category)
+        {
+            $category->setActiveJobs(
+                $em->getRepository('EnsTotoBundle:Job')->getActiveJobs($category->getId())
+            );
+        }
+
+        return $this->render('job/index.html.twig', array(
+            'categories' => $categories
+        ));
+
     }
 
     /**
