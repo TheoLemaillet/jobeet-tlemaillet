@@ -3,6 +3,7 @@
 namespace Ens\TotoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Ens\TotoBundle\Utils\Toto as Toto;
 
 /**
  * Job
@@ -489,5 +490,20 @@ class Job
     public function setUpdatedAtValue()
     {
         $this->updated_at = new \DateTime();
+    }
+
+    public function getCompanySlug()
+    {
+        return Toto::slugify($this->getCompany());
+    }
+
+    public function getPositionSlug()
+    {
+        return Toto::slugify($this->getPosition());
+    }
+
+    public function getLocationSlug()
+    {
+        return Toto::slugify($this->getLocation());
     }
 }

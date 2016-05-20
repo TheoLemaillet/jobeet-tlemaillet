@@ -2,6 +2,6 @@ EnsTotoBundle_job:
     resource: "@EnsTotoBundle/Resources/config/routing/job.yml"
     prefix: /job
 
-ens_toto_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: EnsTotoBundle:Default:index }
+EnsTotoBundle_homepage:
+    pattern:  /
+    defaults: { _controller: EnsTotoBundle:Job:index }
