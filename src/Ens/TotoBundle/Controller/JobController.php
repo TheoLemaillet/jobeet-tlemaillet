@@ -2,10 +2,12 @@
 
 namespace Ens\TotoBundle\Controller;
 
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Ens\TotoBundle\Entity\Job;
+use Ens\TotoBundle\Entity\Category;
 use Ens\TotoBundle\Form\JobType;
 
 /**
