@@ -51,6 +51,11 @@ class JobController extends Controller
                     $this->container->getParameter('max_jobs_on_homepage')
                 )
             );
+            $category->setMoreJobs(
+                $em->getRepository('EnsTotoBundle:Job')->countActiveJobs($category->getId())
+                -
+                $this->container->getParameter('max_jobs_on_homepage')
+            );
         }
 
         return $this->render('job/index.html.twig', array(

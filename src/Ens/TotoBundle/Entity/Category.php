@@ -3,6 +3,7 @@
 namespace Ens\TotoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Ens\TotoBundle\Utils\Toto;
 
 /**
  * Category
@@ -31,6 +32,9 @@ class Category
 
 
     private $active_jobs;
+
+    private $more_jobs;
+
 
     /**
      * Constructor
@@ -154,4 +158,20 @@ class Category
     {
         return $this->active_jobs;
     }
+
+    public function getSlug()
+    {
+        return Toto::slugify($this->getName());
+    }
+
+    public function setMoreJobs($jobs)
+    {
+        $this->more_jobs = $jobs >=  0 ? $jobs : 0;
+    }
+
+    public function getMoreJobs()
+    {
+        return $this->more_jobs;
+    }
+
 }
