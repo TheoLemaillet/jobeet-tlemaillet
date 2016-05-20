@@ -14,6 +14,13 @@ class JobeetTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('paris-france', Toto::slugify('paris,france'));
         $this->assertEquals('sensio', Toto::slugify('  sensio'));
         $this->assertEquals('sensio', Toto::slugify('sensio  '));
+        $this->assertEquals('n-a', Toto::slugify(''));
+        $this->assertEquals('n-a', Toto::slugify(' - '));
+
+        if (function_exists('iconv'))
+        {
+            $this->assertEquals('developpeur-web', Toto::slugify('Développeur Web'));
+        }
     }
 }
 
