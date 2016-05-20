@@ -48,7 +48,7 @@ class Category
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -71,7 +71,7 @@ class Category
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -104,7 +104,7 @@ class Category
     /**
      * Get jobs
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getJobs()
     {
@@ -137,13 +137,13 @@ class Category
     /**
      * Get category_affiliates
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getCategoryAffiliates()
     {
         return $this->category_affiliates;
     }
-    
+
     public function __toString()
     {
         return $this->getName();
@@ -159,14 +159,9 @@ class Category
         return $this->active_jobs;
     }
 
-    public function getSlug()
-    {
-        return Toto::slugify($this->getName());
-    }
-
     public function setMoreJobs($jobs)
     {
-        $this->more_jobs = $jobs >=  0 ? $jobs : 0;
+        $this->more_jobs = $jobs >= 0 ? $jobs : 0;
     }
 
     public function getMoreJobs()
@@ -174,4 +169,41 @@ class Category
         return $this->more_jobs;
     }
 
+    /**
+     * @var string
+     */
+    private $slug;
+
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Category
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setSlugValue()
+    {
+        $this->slug = Toto::slugify($this->getName());
+    }
 }
