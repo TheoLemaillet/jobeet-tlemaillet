@@ -6,6 +6,8 @@ ens_job_index:
 ens_job_show:
     path:     /{company}/{location}/{id}/{position}
     defaults: { _controller: "EnsTotoBundle:Job:show" }
+    requirements:
+      id:  \d+
     methods:  GET
 
 ens_job_new:
