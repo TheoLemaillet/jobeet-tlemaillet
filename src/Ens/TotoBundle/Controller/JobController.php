@@ -36,7 +36,7 @@ class JobController extends Controller
         //$jobs = $em->getRepository('EnsTotoBundle:Job')->getActiveJobs();
 
         /*
-        return $this->render('job/index.html.twig', array(
+        return $this->render('EnsTotoBundle:Job:index.html.twig', array(
             'jobs' => $jobs,
         ));
         */
@@ -58,7 +58,7 @@ class JobController extends Controller
             );
         }
 
-        return $this->render('job/index.html.twig', array(
+        return $this->render('EnsTotoBundle:Job:index.html.twig', array(
             'categories' => $categories
         ));
 
@@ -82,7 +82,7 @@ class JobController extends Controller
             return $this->redirectToRoute('ens_job_show', array('id' => $job->getId()));
         }
 
-        return $this->render('job/new.html.twig', array(
+        return $this->render('EnsTotoBundle:Job:new.html.twig', array(
             'job' => $job,
             'form' => $form->createView(),
         ));
@@ -104,7 +104,7 @@ class JobController extends Controller
 
         $deleteForm = $this->createDeleteForm($job);
 
-        return $this->render('job/show.html.twig', array(
+        return $this->render('EnsTotoBundle:Job:show.html.twig', array(
             'job' => $job,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -128,7 +128,7 @@ class JobController extends Controller
             return $this->redirectToRoute('ens_job_edit', array('id' => $job->getId()));
         }
 
-        return $this->render('job/edit.html.twig', array(
+        return $this->render('EnsTotoBundle:Job:edit.html.twig', array(
             'job' => $job,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
