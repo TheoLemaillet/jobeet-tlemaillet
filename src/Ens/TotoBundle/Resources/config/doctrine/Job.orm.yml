@@ -1,6 +1,7 @@
 # src/Ens/TotoBundle/Resources/config/doctrine/Job.orm.yml
 Ens\TotoBundle\Entity\Job:
   type: entity
+  repositoryClass: Ens\TotoBundle\Repository\JobRepository
   table: job
   id:
     id:
