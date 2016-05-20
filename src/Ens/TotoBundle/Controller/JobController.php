@@ -23,12 +23,11 @@ class JobController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $query = $em->createQuery(
-            'SELECT j FROM EnsTotoBundle:Job j WHERE j.created_at > :date'
-        )->setParameter('date', date('Y-m-d H:i:s', time() - 86400 * 30));
+            'SELECT j FROM EnsTotoBundle:Job j WHERE j.expires_at > :date'
+        )->setParameter('date', date('Y-m-d H:i:s', time()));
+        $jobs = $query->getResult();
 
         //$jobs = $em->getRepository('EnsTotoBundle:Job')->findAll();
-
-        $jobs = $query->getResult();
 
         return $this->render('job/index.html.twig', array(
             'jobs' => $jobs,
