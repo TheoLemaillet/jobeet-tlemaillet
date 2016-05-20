@@ -19,14 +19,14 @@
 
     {% include 'EnsTotoBundle:Job:list.html.twig' with {'jobs': category.activejobs} %}
 
-    {% if last_page > 1 %}
+    {% if last_page > 1 %}2
         <div class="pagination">
             <a href="{{ path('EnsTotoBundle_category', { 'slug': category.slug, 'page': 1 }) }}">
-                <img src="{{ asset('bundles/ensjobeet/images/first.png') }}" alt="First page" title="First page" />
+                <img src="{{ asset('bundles/enstoto/images/first.png') }}" alt="First page" title="First page" />
             </a>
 
             <a href="{{ path('EnsTotoBundle_category', { 'slug': category.slug, 'page': previous_page }) }}">
-                <img src="{{ asset('bundles/ensjobeet/images/previous.png') }}" alt="Previous page" title="Previous page" />
+                <img src="{{ asset('bundles/enstoto/images/previous.png') }}" alt="Previous page" title="Previous page" />
             </a>
 
             {% for page in 1..last_page %}
@@ -38,11 +38,11 @@
             {% endfor %}
 
             <a href="{{ path('EnsTotoBundle_category', { 'slug': category.slug, 'page': next_page }) }}">
-                <img src="{{ asset('bundles/ensjobeet/images/next.png') }}" alt="Next page" title="Next page" />
+                <img src="{{ asset('bundles/enstoto/images/next.png') }}" alt="Next page" title="Next page" />
             </a>
 
             <a href="{{ path('EnsTotoBundle_category', { 'slug': category.slug, 'page': last_page }) }}">
-                <img src="{{ asset('bundles/ensjobeet/images/last.png') }}" alt="Last page" title="Last page" />
+                <img src="{{ asset('bundles/enstoto/images/last.png') }}" alt="Last page" title="Last page" />
             </a>
         </div>
     {% endif %}

@@ -3,9 +3,9 @@ EnsTotoBundle_job:
     prefix: /job
 
 EnsTotoBundle_category:
-    pattern:  /category/{slug}/{page}
+    path:  /category/{slug}/{page}
     defaults: { _controller: EnsTotoBundle:Category:show,  page: 1 }
 
 EnsTotoBundle_homepage:
-    pattern:  /
+    path:  /
     defaults: { _controller: EnsTotoBundle:Job:index }
