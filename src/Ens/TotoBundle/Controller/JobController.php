@@ -89,6 +89,14 @@ class JobController extends Controller
      */
     public function showAction(Job $job)
     {
+
+        $em = $this->getDoctrine()->getManager();
+        $job = $em->getRepository('EnsTotoBundle:Job')->getActiveJob($job->getId());
+
+        if (!$job) {
+            throw $this->createNotFoundException('Unable to find Job entity.');
+        }
+
         $deleteForm = $this->createDeleteForm($job);
 
         return $this->render('job/show.html.twig', array(
