@@ -5,6 +5,7 @@ namespace Ens\TotoBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 use Ens\TotoBundle\Entity\Job;
 use Ens\TotoBundle\Entity\Category;
@@ -140,7 +141,7 @@ class JobController extends Controller
             $em->persist($job);
             $em->flush();
 
-            return $this->redirectToRoute('ens_job_edit', array('id' => $job->getId()));
+            return $this->redirectToRoute('ens_job_edit', array('token' => $job->getToken()));
         }
 
         return $this->render('EnsTotoBundle:Job:edit.html.twig', array(
@@ -148,6 +149,7 @@ class JobController extends Controller
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
+//FIXME Verifier si j'ai bien compris ctrl+f "modifiez JobController pour utiliser le jeton"
     }
 
     /**
@@ -178,7 +180,8 @@ class JobController extends Controller
     private function createDeleteForm(Job $job)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('ens_job_delete', array('id' => $job->getId())))
+            ->setAction($this->generateUrl('ens_job_delete', array('token' => $job->getToken())))
+            ->add('token', HiddenType::class)
             ->setMethod('DELETE')
             ->getForm()
         ;

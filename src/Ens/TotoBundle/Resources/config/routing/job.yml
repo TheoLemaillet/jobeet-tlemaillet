@@ -16,11 +16,11 @@ ens_job_new:
     methods:  [GET, POST]
 
 ens_job_edit:
-    path:     /{id}/edit
+    path:     /{token}/edit
     defaults: { _controller: "EnsTotoBundle:Job:edit" }
     methods:  [GET, POST]
 
 ens_job_delete:
-    path:     /{id}/delete
+    path:     /{token}/delete
     defaults: { _controller: "EnsTotoBundle:Job:delete" }
     methods:  DELETE
