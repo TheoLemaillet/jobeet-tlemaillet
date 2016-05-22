@@ -3,7 +3,6 @@
 
 namespace Ens\TotoBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Ens\TotoBundle\Entity\Category;
 
 /**
  * Category controller.

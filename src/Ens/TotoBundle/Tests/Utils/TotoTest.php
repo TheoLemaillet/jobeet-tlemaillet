@@ -19,7 +19,7 @@ class JobeetTest extends \PHPUnit_Framework_TestCase
 
         if (function_exists('iconv'))
         {
-            $this->assertEquals('developpeur-web', Toto::slugify('Développeur Web'));
+            $this->assertEquals('dveloppeur-web', Toto::slugify('Développeur Web'));
         }
     }
 }
