@@ -18,29 +18,33 @@
 <div id="container">
     <div id="header">
         <div class="content">
-            <h1><a href="{{ path('EnsTotoBundle_homepage') }}">
-                    <img src="{{ asset('bundles/enstoto/images/logo.jpg') }}" alt="Jobeet Job Board" />
-                </a></h1>
+            <h1>
+                <a href="{{ path('EnsTotoBundle_homepage') }}">
+                    Toto Job
+                </a>
 
-            <div id="sub_header">
-                <div class="post">
-                    <h2>Ask for people</h2>
-                    <div>
-                        <a href="{{ path('ens_job_new') }}">Post a Job</a>
+                <div id="sub_header">
+                    <div class="post">
+                        <h2>Ask for people</h2>
+                        <div>
+                            <a href="{{ path('ens_job_new') }}">Post a Job</a>
+                        </div>
+                    </div>
+
+                    <div class="search">
+                        <h2>Ask for a job</h2>
+                        <form action="" method="get">
+                            <div class="inputs">
+                                <input type="text" name="keywords" id="search_keywords" />
+                                <input type="submit" value="search" />
+                            </div>
+                            <div class="help">
+                                Enter some keywords (city, country, position, ...)
+                            </div>
+                        </form>
                     </div>
                 </div>
-
-                <div class="search">
-                    <h2>Ask for a job</h2>
-                    <form action="" method="get">
-                        <input type="text" name="keywords" id="search_keywords" />
-                        <input type="submit" value="search" />
-                        <div class="help">
-                            Enter some keywords (city, country, position, ...)
-                        </div>
-                    </form>
-                </div>
-            </div>
+            </h1>
         </div>
     </div>
 
@@ -65,18 +69,20 @@
 
     <div id="footer">
         <div class="content">
-              <span class="symfony">
-                <img src="{{ asset('bundles/enstoto/images/jobeet-mini.png') }}" />
-                powered by <a href="http://www.symfony.com/">
-                  <img src="{{ asset('bundles/enstoto/images/symfony.gif') }}" alt="symfony framework" />
-                </a>
-              </span>
+
             <ul>
                 <li><a href="">About Jobeet</a></li>
                 <li class="feed"><a href="">Full feed</a></li>
                 <li><a href="">Jobeet API</a></li>
                 <li class="last"><a href="">Affiliates</a></li>
             </ul>
+            <span class="symfony">
+                <img src="{{ asset('bundles/enstoto/images/jobeet-mini.png') }}" />
+                powered by
+                <a href="http://www.symfony.com/">
+                    <img src="{{ asset('bundles/enstoto/images/symfony.gif') }}" alt="symfony framework" />
+                </a>
+            </span>
         </div>
     </div>
 </div>

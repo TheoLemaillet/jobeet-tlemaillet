@@ -1,24 +1,26 @@
-    # src/Ens/TotoBundle/Resources/config/validation.yml
+# src/Ens/TotoBundle/Resources/config/validation.yml
 
-    Ens\TotoBundle\Entity\Job:
-            properties:
-                category:
-                    - NotBlank: ~
-                type:
-                    - NotBlank: ~
-                    - Choice: {callback: getTypeValues}
-                company:
-                    - NotBlank: ~
-                position:
-                    - NotBlank: ~
-                location:
-                    - NotBlank: ~
-                description:
-                    - NotBlank: ~
-                how_to_apply:
-                    - NotBlank: ~
-                token:
-                    - NotBlank: ~
-                email:
-                    - NotBlank: ~
-                    - Email: ~
+Ens\TotoBundle\Entity\Job:
+  properties:
+    category:
+      - NotBlank: ~
+    type:
+      - NotBlank: ~
+      - Choice: {callback: getTypeValues}
+    company:
+      - NotBlank: ~
+    position:
+      - NotBlank: ~
+    location:
+      - NotBlank: ~
+    description:
+      - NotBlank: ~
+    how_to_apply:
+      - NotBlank: ~
+    token:
+      - NotBlank: ~
+    email:
+      - NotBlank: ~
+      - Email: ~
+    file:
+      - Image: ~

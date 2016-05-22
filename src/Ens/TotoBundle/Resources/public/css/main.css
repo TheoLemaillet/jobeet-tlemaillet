@@ -1,3 +1,4 @@
+@import url(https://fonts.googleapis.com/css?family=Oswald);
 /*
 Reset CSS
 Copyright (c) 2008, Yahoo! Inc. All rights reserved.
@@ -37,21 +38,30 @@ body
 
 #header
 {
-  background: url(../images/bg-header.jpg) repeat-x top;
+    background-image: linear-gradient(
+            to bottom,
+            rgba(98,98,98,1) 0%,
+            rgba(98,98,98,1) 25%,
+            rgba(34,34,34,1) 100%
+    );
 }
 
 #header h1
 {
-  height: 110px;
-  width: 783px;
-  margin: 0 auto;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 #header h1 a {
-  display: block;
-  width: 150px;
-  height: 110px;
-  background: url(../images/logo.jpg) no-repeat;
+    display: flex;
+    align-items: center;
+    font-family: 'Oswald', sans-serif;
+    color: white;
+    font-size: 5em;
+    text-decoration: none;
 }
 
 
@@ -62,113 +72,143 @@ body
 
 #header .post
 {
-  float: right;
-  margin-top: -66px;
-  margin-right: 40px;
+
+}
+
+#sub_header .search form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+#sub_header .search .inputs
+{
+    display: flex;
+    align-items: center;
+    width: 100%;
 }
 
 #sub_header .search input
 {
-  background: url(../images/button-search.jpg) no-repeat;
-  text-indent: -9999px;
-  border: 0;
-  width: 95px;
-  height: 40px;
-  margin-left: 10px;
+    background: url(../images/button-search.svg) no-repeat;
+    text-indent: -9999px;
+    border: 0;
+    width: 2em;
+    height: 2em;
+    margin-left: 10px;
+    background-size: 100% 100%;
+    color: transparent;
 }
 
 #sub_header .search input:hover
 {
-  background-position: left -40px;
+
 }
 
 #sub_header .search input:active
 {
-  background-position: left -80px;
+
 }
 
 #sub_header .search input#search_keywords
 {
-  font-size: 160%;
-  padding: 8px 10px;
-  line-height: 1.5em;
-  margin-bottom: 3px;
-  margin-left: 0px;
-  width: 579px;
-  height: 27px;
-  border: 0;
-  background: url(../images/search-box.jpg);
-  text-indent: 0;
-  color: #666;
+    background: white;
+    text-indent: 0;
+    color: #666;
+    width: auto;
+    margin: 0;
+    padding: 4px 8px;
+    flex-grow: 1;
 }
 
 #sub_header .post h2
 {
-  display: none;
+    display: none;
 }
 
 #sub_header .post div a
 {
   display: block;
-  background: url(../images/button-post.jpg);
-  text-indent: -9999px;
-  width: 150px;
-  height: 48px;
+    font-size: 1rem;
+    background-color: #3ea8d0;
+    padding: 5px 10px;
+    border-radius: 0.8em;
+    margin-bottom: 1em;
 }
+#sub_header .post div a::after
+{
+    content: '>>';
+    margin-left: 0.5em;
+    color: #96e0f9;
+}
+
 
 #sub_header .post div a:hover
 {
-  background-position: left -50px;
+
 }
 
 #sub_header .post div a:active
 {
-  background-position: left -100px;
+
 }
 
 
 #sub_header
 {
-  background: url(../images/bg-subheader.gif) bottom;
-  width: 783px;
-  height: 128px;
-  margin: 0 auto;
+    margin: 0 0 0 15%;
+    padding: 1em 0;
+    flex-shrink: 1;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 #sub_header .search
 {
-  padding: 15px 35px;
+
 }
 
 #sub_header h2
 {
-  text-indent: -9999px;
+  font-size: 0;
 }
 
 #sub_header .search h2
 {
-  background: url(../images/header-job.jpg) no-repeat;
-  height: 23px;
-  width: 250px;
-  margin-bottom: 7px;
-  margin-top: 5px;
+    background: url(../images/header-job.jpg) no-repeat;
+    height: 23px;
+    width: 250px;
+    margin-bottom: 7px;
+    margin-top: 5px;
+    display: none;
 }
 
-#content .content {
-  width: 783px;
-  margin: 0 auto;
+#content .content
+{
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+@media all and (max-width: 600px) {
+    #content .content
+    {
+        width: 100%;
+    }
 }
 
 #content h1
 {
-  margin-top: 10px;
-  margin-bottom: 1px;
-  padding: 0px 15px;
-  font-size: 124%;
-  text-transform: uppercase;
-  background: url(../images/bg-listheader.gif) no-repeat;
-  line-height: 32px;
-  color: #fff;
+    margin-top: 10px;
+    padding: 0.3em 1em;
+    font-size: 1.25em;
+    text-transform: uppercase;
+    background-color: #176F94;
+    color: #fff;
+    border-radius: 1em;
 }
 
 #content h1 a
@@ -177,7 +217,6 @@ body
   text-decoration: none;
   font-style: normal;
   text-transform: uppercase;
-  line-height: 32px;
 }
 
 #footer
@@ -192,8 +231,11 @@ body
 }
 
 #footer .content {
-  width: 783px;
-  margin: 0 auto;
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 #footer a

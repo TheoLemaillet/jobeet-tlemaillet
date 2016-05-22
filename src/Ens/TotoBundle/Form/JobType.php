@@ -5,6 +5,7 @@ namespace Ens\TotoBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Ens\TotoBundle\Entity\Job;
 
@@ -26,7 +27,13 @@ class JobType extends AbstractType
                 )
             )
             ->add('company')
-            ->add('logo', null, array('label' => 'Company logo'))
+            ->add('file',
+                FileType::class,
+                array(
+                    'label' => 'Company logo',
+                    'required' => false
+                )
+            )
             ->add('url')
             ->add('position')
             ->add('location')

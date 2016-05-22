@@ -1,6 +1,6 @@
 .category .feed
 {
-  margin: 4px 15px;
+  margin: 14px 15px;
   float: right;
   line-height: 25px;
   background-position: left center;
@@ -12,9 +12,16 @@
   text-decoration: none;
   text-transform: uppercase;
 }
+
+#jobs
+{
+  width: 100%;
+}
+
+
 .jobs
 {
- width: 760px;
+ width: 100%;
  margin: 0 auto;
 }
 
