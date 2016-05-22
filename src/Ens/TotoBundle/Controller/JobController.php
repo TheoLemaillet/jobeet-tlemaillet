@@ -79,7 +79,12 @@ class JobController extends Controller
             $em->persist($job);
             $em->flush();
 
-            return $this->redirectToRoute('ens_job_show', array('id' => $job->getId()));
+            return $this->redirectToRoute('ens_job_show', array(
+                'company' => $job->getCompanySlug(),
+                'location' => $job->getLocationSlug(),
+                'id' => $job->getId(),
+                'position' => $job->getPositionSlug()
+            ));
         }
 
         return $this->render('EnsTotoBundle:Job:new.html.twig', array(

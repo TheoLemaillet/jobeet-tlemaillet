@@ -94,6 +94,8 @@ class Job
      * @var \Ens\TotoBundle\Entity\Category
      */
     private $category;
+    
+    public $file;
 
 
     /**
@@ -127,6 +129,20 @@ class Job
     public function getType()
     {
         return $this->type;
+    }
+
+    public static function getTypes()
+    {
+        return array(
+            'full-time' => 'Full time',
+            'part-time' => 'Part time', 
+            'freelance' => 'Freelance',
+        );
+    }
+
+    public static function getTypeValues()
+    {
+        return array_keys(self::getTypes());
     }
 
     /**
