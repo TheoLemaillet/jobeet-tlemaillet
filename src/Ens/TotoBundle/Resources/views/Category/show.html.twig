@@ -19,7 +19,7 @@
 
     {% include 'EnsTotoBundle:Job:list.html.twig' with {'jobs': category.activejobs} %}
 
-    {% if last_page > 1 %}2
+    {% if last_page > 1 %}
         <div class="pagination">
             <a href="{{ path('EnsTotoBundle_category', { 'slug': category.slug, 'page': 1 }) }}">
                 <img src="{{ asset('bundles/enstoto/images/first.png') }}" alt="First page" title="First page" />

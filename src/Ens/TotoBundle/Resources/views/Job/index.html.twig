@@ -8,32 +8,30 @@
 {% block content %}
     <div id="jobs">
         {% for category in categories %}
-            <div>
-                <div class="category_{{ category.slug }}">
-                    <h1>
+            <div class="category_{{ category.slug }}">
+                <h1>
+                    <a href="{{ path(
+                        'EnsTotoBundle_category',
+                        { 'slug': category.slug })
+                    }}">
+                        {{ category.name }}
+                    </a>
+                </h1>
+
+                {% include 'EnsTotoBundle:Job:list.html.twig' with {'jobs': category.activejobs} %}
+
+                {% if category.morejobs %}
+                    <div class="more_jobs">
+                        and
                         <a href="{{ path(
                             'EnsTotoBundle_category',
                             { 'slug': category.slug })
                         }}">
-                            {{ category.name }}
+                            {{ category.morejobs }}
                         </a>
-                    </h1>
-                   {% include 'EnsTotoBundle:Job:list.html.twig' with {'jobs': category.activejobs} %}
-
-
-                    {% if category.morejobs %}
-                        <div class="more_jobs">
-                            and
-                            <a href="{{ path(
-                                'EnsTotoBundle_category',
-                                { 'slug': category.slug })
-                            }}">
-                                {{ category.morejobs }}
-                            </a>
-                            more...
-                        </div>
-                    {% endif %}
-                </div>
+                        more...
+                    </div>
+                {% endif %}
             </div>
         {% endfor %}
     </div>
