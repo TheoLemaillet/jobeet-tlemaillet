@@ -90,10 +90,10 @@ class JobController extends Controller
             $em->persist($job);
             $em->flush();
 
-            return $this->redirectToRoute('ens_job_show', array(
+            return $this->redirectToRoute('ens_job_preview', array(
                 'company' => $job->getCompanySlug(),
                 'location' => $job->getLocationSlug(),
-                'id' => $job->getId(),
+                'token' => $job->getToken(),
                 'position' => $job->getPositionSlug()
             ));
         }
@@ -141,7 +141,12 @@ class JobController extends Controller
             $em->persist($job);
             $em->flush();
 
-            return $this->redirectToRoute('ens_job_edit', array('token' => $job->getToken()));
+            return $this->redirectToRoute('ens_job_preview', array(
+                'company' => $job->getCompanySlug(),
+                'location' => $job->getLocationSlug(),
+                'token' => $job->getToken(),
+                'position' => $job->getPositionSlug()
+            ));
         }
 
         return $this->render('EnsTotoBundle:Job:edit.html.twig', array(
@@ -151,6 +156,20 @@ class JobController extends Controller
         ));
 //FIXME Verifier si j'ai bien compris ctrl+f "modifiez JobController pour utiliser le jeton"
     }
+
+
+    public function previewAction(Job $job)
+    {
+        $deleteForm = $this->createDeleteForm($job);
+        $publishForm = $this->createPublishForm($job);
+
+        return $this->render('EnsTotoBundle:Job:show.html.twig', array(
+            'job' => $job,
+            'delete_form' => $deleteForm->createView(),
+            'publish_form' => $publishForm->createView(),
+        ));
+    }
+    //FIXME ??????????????????????????????????????? ctrl+f ici la différence avec l'action show
 
     /**
      * Deletes a Job entity.
@@ -185,5 +204,42 @@ class JobController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+
+    public function publishAction(Request $request, Job $job)
+    {
+        $form = $this->createPublishForm($job);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $job->publish();
+            $em->persist($job);
+            $em->flush();
+
+            $this->get('session')
+                ->getFlashBag()
+                ->set(
+                    'notice',
+                    'Your job is now online for 30 days.'
+                );
+        }
+
+        return $this->redirect($this->generateUrl('ens_job_preview', array(
+            'company' => $job->getCompanySlug(),
+            'location' => $job->getLocationSlug(),
+            'token' => $job->getToken(),
+            'position' => $job->getPositionSlug()
+        )));
+    }
+
+    private function createPublishForm(Job $job)
+    {
+        return $this->createFormBuilder(array('token' => $job->getToken()))
+            ->add('token', HiddenType::class)
+            ->getForm()
+            ;
     }
 }

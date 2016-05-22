@@ -12,9 +12,16 @@ class CategoryRepository extends \Doctrine\ORM\EntityRepository
 {
     public function getWithJobs()
     {
-        $query = $this->getEntityManager()->createQuery(
-            'SELECT c FROM EnsTotoBundle:Category c LEFT JOIN c.jobs j WHERE j.expires_at > :date'
-        )->setParameter('date', date('Y-m-d H:i:s', time()));
+        $query = $this
+            ->getEntityManager()
+            ->createQuery('
+                SELECT c FROM EnsTotoBundle:Category c 
+                LEFT JOIN c.jobs j 
+                WHERE j.expires_at > :date
+                AND j.is_activated = :activated
+            ')
+            ->setParameter('date', date('Y-m-d H:i:s', time()))
+            ->setParameter('activated', 1);
 
         return $query->getResult();
     }

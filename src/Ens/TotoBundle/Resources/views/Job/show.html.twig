@@ -12,6 +12,10 @@
 
 
 {% block content %}
+    {% if app.request.get('token') %}
+        {% include 'EnsTotoBundle:Job:admin.html.twig' with {'job': job} %}
+    {% endif %}
+
     <div id="job">
         <h1>{{ job.company }}</h1>
         <h2>{{ job.location }}</h2>
@@ -41,6 +45,8 @@
             <small>posted on {{ job.createdat|date('m/d/Y') }}</small>
         </div>
 
+
+        {#FIXME commenter le bloc du dessous pour la release#}
         <div style="padding: 20px 0">
             <a href="{{ path('ens_job_edit', { 'token': job.token }) }}">
                 Edit
@@ -48,3 +54,4 @@
         </div>
     </div>
 {% endblock %}
+
