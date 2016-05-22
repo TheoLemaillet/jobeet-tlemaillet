@@ -71,16 +71,20 @@ class JobController extends Controller
     public function newAction(Request $request)
     {
         $job = new Job();
+        $job->setType('full-time');
         $form = $this->createForm('Ens\TotoBundle\Form\JobType', $job);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            /*
             $job->file->move(
                 $this->get('kernel')->getRootDir() . "/../web/uploads/jobs",
                 $job->file->getClientOriginalName()
             );
             $job->setLogo($job->file->getClientOriginalName());
+            */
 
             $em->persist($job);
             $em->flush();

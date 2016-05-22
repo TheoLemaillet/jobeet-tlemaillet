@@ -382,7 +382,7 @@ em
 }
 
 #job_form {
-  width: 760px;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -415,4 +415,9 @@ em
 #job_form .radio_list li
 {
   display: inline;
+}
+
+#job_file {
+    width: 100%;
+    white-space: normal;
 }
