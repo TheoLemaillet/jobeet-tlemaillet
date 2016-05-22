@@ -53,4 +53,9 @@ class JobType extends AbstractType
             'data_class' => 'Ens\TotoBundle\Entity\Job'
         ));
     }
+
+    public function getBlockPrefix()
+    {
+        return 'job';
+    }
 }

@@ -73,4 +73,83 @@ class JobControllerTest extends WebTestCase
         $crawler = $client->request('GET', sprintf('/job/sensio-labs/paris-france/%d/web-developer-expired', $this->getExpiredJob()->getId()));
         $this->assertTrue(404 === $client->getResponse()->getStatusCode());
     }
+
+    public function testJobForm()
+    {
+        $client = static::createClient();
+
+        $crawler = $client->request('GET', '/job/new');
+        $this->assertEquals('Ens\TotoBundle\Controller\JobController::newAction', $client->getRequest()->attributes->get('_controller'));
+
+        $form = $crawler->selectButton('Preview your job')->form(array(
+            'job[company]'      => 'Sensio Labs',
+            'job[url]'          => 'http://www.sensio.com/',
+            'job[file]'         => __DIR__.'/../../../../../web/bundles/enstoto/images/sensio-labs.gif',
+            'job[position]'     => 'Developer',
+            'job[location]'     => 'Atlanta, USA',
+            'job[description]'  => 'You will work with symfony to develop websites for our customers.',
+            'job[how_to_apply]' => 'Send me an email',
+            'job[email]'        => 'for.a.job@example.com',
+            'job[is_public]'    => false,
+        ));
+
+        $client->submit($form);
+        $this->assertEquals('Ens\TotoBundle\Controller\JobController::newAction', $client->getRequest()->attributes->get('_controller'));
+
+        $client->followRedirect();
+        $this->assertEquals('Ens\TotoBundle\Controller\JobController::previewAction', $client->getRequest()->attributes->get('_controller'));
+
+        $kernel = static::createKernel();
+        $kernel->boot();
+        $em = $kernel->getContainer()->get('doctrine.orm.entity_manager');
+
+        $query = $em->createQuery('
+            SELECT count(j.id) from EnsTotoBundle:Job j 
+            WHERE j.location = :location 
+            AND j.is_activated IS NULL 
+            AND j.is_public = 0
+        ');
+        $query->setParameter('location', 'Atlanta, USA');
+        $this->assertTrue(0 < $query->getSingleScalarResult());
+
+        $crawler = $client->request('GET', '/job/new');
+        $form = $crawler->selectButton('Preview your job')->form(array(
+            'job[company]'      => 'Sensio Labs',
+            'job[position]'     => 'Developer',
+            'job[location]'     => 'Atlanta, USA',
+            'job[email]'        => 'not.an.email',
+        ));
+        $crawler = $client->submit($form);
+
+        //FIXME .error_list pas dans symfony 2.8
+        // check if we have 3 errors
+        //$this->assertTrue($crawler->filter('.error_list')->count() == 3);
+        // check if we have error on job_description field
+        //$this->assertTrue($crawler->filter('#job_description')->siblings()->first()->filter('.error_list')->count() == 1);
+        // check if we have error on job_how_to_apply field
+        //$this->assertTrue($crawler->filter('#job_how_to_apply')->siblings()->first()->filter('.error_list')->count() == 1);
+        // check if we have error on job_email field
+        //$this->assertTrue($crawler->filter('#job_email')->siblings()->first()->filter('.error_list')->count() == 1);
+    }
+
+    public function createJob($values = array())
+    {
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/job/new');
+        $form = $crawler->selectButton('Preview your job')->form(array_merge(array(
+            'job[company]'      => 'Sensio Labs',
+            'job[url]'          => 'http://www.sensio.com/',
+            'job[position]'     => 'Developer',
+            'job[location]'     => 'Atlanta, USA',
+            'job[description]'  => 'You will work with symfony to develop websites for our customers.',
+            'job[how_to_apply]' => 'Send me an email',
+            'job[email]'        => 'for.a.job@example.com',
+            'job[is_public]'    => false,
+        ), $values));
+
+        $client->submit($form);
+        $client->followRedirect();
+
+        return $client;
+    }
 }

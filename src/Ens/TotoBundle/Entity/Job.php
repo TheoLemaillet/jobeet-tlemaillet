@@ -539,7 +539,7 @@ class Job
 
     protected function getUploadRootDir()
     {
-        return $this->get('kernel')->getRootDir() . "/../web/";
+        return __DIR__.'/../../../../../web/';
     }
 
     public function getWebPath()
