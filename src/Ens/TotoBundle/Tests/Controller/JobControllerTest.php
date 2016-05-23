@@ -198,7 +198,8 @@ class JobControllerTest extends WebTestCase
         $crawler = $client->getCrawler();
 
         //FIXME InvalidArgumentException: The current node list is empty.
-        $form = $crawler->selectButton('Delete')->form();
+        $button = $crawler->selectButton('Delete');
+        $form = $button->form();
         $client->submit($form);
 
         $kernel = static::createKernel();

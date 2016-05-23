@@ -2,3 +2,14 @@ services:
 #    ens_toto.example:
 #        class: Ens\TotoBundle\Example
 #        arguments: ["@service_id", "plain_value", %parameter%]
+    ens.toto.admin.category:
+        class: Ens\TotoBundle\Admin\CategoryAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: toto, label: Categories }
+        arguments: [null, Ens\TotoBundle\Entity\Category, EnsTotoBundle:CategoryAdmin]
+ 
+    ens.toto.admin.job:
+        class: Ens\TotoBundle\Admin\JobAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: toto, label: Jobs }
+        arguments: [null, Ens\TotoBundle\Entity\Job, EnsTotoBundle:JobAdmin]
