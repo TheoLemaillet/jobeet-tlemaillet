@@ -21,7 +21,7 @@ class JobController extends Controller
      * Lists all Job entities.
      *
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -58,9 +58,16 @@ class JobController extends Controller
                 $this->container->getParameter('max_jobs_on_homepage')
             );
         }
+        $format = $request->getRequestFormat();
 
-        return $this->render('EnsTotoBundle:Job:index.html.twig', array(
-            'categories' => $categories
+        return $this->render('EnsTotoBundle:Job:index.'.$format.'.twig', array(
+            'categories' => $categories,
+            'lastUpdated' => $em
+                ->getRepository('EnsTotoBundle:Job')
+                ->getLatestPost()
+                ->getCreatedAt()
+                ->format(DATE_ATOM),
+            'feedId' => sha1($this->get('router')->generate('ens_job', array('_format'=> 'atom'), true)),
         ));
 
     }

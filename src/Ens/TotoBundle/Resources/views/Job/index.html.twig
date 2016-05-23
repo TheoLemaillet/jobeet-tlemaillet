@@ -16,6 +16,10 @@
                     }}">
                         {{ category.name }}
                     </a>
+                    <div class="feed">
+                        <a href="{{ path('EnsTotoBundle_category',
+                            { 'slug': category.slug, '_format': 'atom' }) }}">Feed</a>
+                    </div>
                 </h1>
 
                 {% include 'EnsTotoBundle:Job:list.html.twig' with {'jobs': category.activejobs} %}

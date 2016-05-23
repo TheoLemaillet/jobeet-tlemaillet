@@ -1,10 +1,10 @@
 <?php
-// src/Ens/JobeetBundle/Tests/Utils/JobeetTest.php
+// src/Ens/TotoBundle/Tests/Utils/TotoTest.php
 
 namespace Ens\TotoBundle\Tests\Utils;
 use Ens\TotoBundle\Utils\Toto;
 
-class JobeetTest extends \PHPUnit_Framework_TestCase
+class TotoTest extends \PHPUnit_Framework_TestCase
 {
     public function testSlugify()
     {

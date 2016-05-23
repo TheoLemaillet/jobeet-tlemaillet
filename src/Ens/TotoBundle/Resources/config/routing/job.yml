@@ -38,5 +38,5 @@ ens_job_delete:
 
 ens_job_extend:
     path:  /{token}/extend
-    defaults: { _controller: "EnsJobeetBundle:Job:extend" }
+    defaults: { _controller: "EnsTotoBundle:Job:extend" }
     methods: POST

@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
  */
 class CategoryController extends Controller
 {
-    public function showAction($slug, $page)
+    public function showAction(Request $request, $slug, $page)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -32,13 +32,25 @@ class CategoryController extends Controller
                 $jobs_per_page, ($page - 1) * $jobs_per_page
             ));
 
+        $format = $request->getRequestFormat();
+
         return $this->render('EnsTotoBundle:Category:show.html.twig', array(
             'category' => $category,
             'last_page' => $last_page,
             'previous_page' => $previous_page,
             'current_page' => $page,
             'next_page' => $next_page,
-            'total_jobs' => $total_jobs
+            'total_jobs' => $total_jobs,
+            'feedId' => sha1($this
+                ->get('router')
+                ->generate(
+                    'EnsTotoBundle_category',
+                    array('slug' =>  $category->getSlug(),
+                        '_format' => 'atom'
+                    ),
+                    true
+                )
+            ),
         ));
     }
 }
