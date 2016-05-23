@@ -1,0 +1,16 @@
+# src/Ens/TotoBundle/Resources/config/doctrine/User.orm.yml
+
+Ens\TotoBundle\Entity\User:
+  type: entity
+  table: user
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    username:
+      type: string
+      length: 255
+    password:
+      type: string
+      length: 255

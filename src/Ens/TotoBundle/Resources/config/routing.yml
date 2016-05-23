@@ -15,3 +15,6 @@ login:
     defaults:  { _controller: EnsTotoBundle:Security:login }
 login_check:
     pattern:   /login_check
+
+logout:
+    path:   /logout
