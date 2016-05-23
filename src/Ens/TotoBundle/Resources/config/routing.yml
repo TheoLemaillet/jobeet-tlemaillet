@@ -9,3 +9,9 @@ EnsTotoBundle_category:
 EnsTotoBundle_homepage:
     path:  /
     defaults: { _controller: EnsTotoBundle:Job:index }
+
+login:
+    pattern:   /login
+    defaults:  { _controller: EnsTotoBundle:Security:login }
+login_check:
+    pattern:   /login_check
