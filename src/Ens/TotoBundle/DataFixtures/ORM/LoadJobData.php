@@ -74,8 +74,8 @@ class LoadJobData extends AbstractFixture implements OrderedFixtureInterface
 
         for($i = 100; $i <= 130; $i++)
         {
-
-            switch (random_int(1,4)) {
+            switch (random_int(2,2)) {
+            //switch (random_int(1,4)) {
                 case 1:
                     $company = 'Sensio Labs';
                     $logo = 'sensio-labs.gif';
@@ -93,7 +93,8 @@ class LoadJobData extends AbstractFixture implements OrderedFixtureInterface
                     $logo = 'soundgecko.png';
                     break;
             }
-            switch (random_int(1,4)) {
+            switch (random_int(2,2)) {
+            //switch (random_int(1,4)) {
                 case 1:
                     $category = 'category-programming';
                     $job_name =  'Web Developer';

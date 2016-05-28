@@ -25,13 +25,13 @@ class CategoryControllerTest extends WebTestCase
 
         // categories with more than $max_jobs_on_homepage jobs also have a "more" link
         $crawler = $client->request('GET', '/');
-        $link = $crawler->selectLink('22')->link();
+        $link = $crawler->selectLink('23')->link();
         $crawler = $client->click($link);
         $this->assertEquals('Ens\TotoBundle\Controller\CategoryController::showAction', $client->getRequest()->attributes->get('_controller'));
-        $this->assertEquals('programming', $client->getRequest()->attributes->get('slug'));
+        $this->assertEquals('design', $client->getRequest()->attributes->get('slug'));
 
         // only $max_jobs_on_category jobs are listed
-        $this->assertTrue($crawler->filter('.jobs tr')->count() == 20);
+        $this->assertTrue($crawler->filter('.jobs a')->count() == 21);
         $this->assertRegExp('/32 jobs/', $crawler->filter('.pagination_desc')->text());
         $this->assertRegExp('/page 1\/2/', $crawler->filter('.pagination_desc')->text());
 

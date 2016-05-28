@@ -13,7 +13,7 @@ class JobControllerTest extends WebTestCase
         $em = $kernel->getContainer()->get('doctrine.orm.entity_manager');
 
         $query = $em->createQuery('SELECT j from EnsTotoBundle:Job j LEFT JOIN j.category c WHERE c.slug = :slug AND j.expires_at > :date ORDER BY j.created_at DESC');
-        $query->setParameter('slug', 'programming');
+        $query->setParameter('slug', 'design');
         $query->setParameter('date', date('Y-m-d H:i:s', time()));
         $query->setMaxResults(1);
         return $query->getSingleResult();
@@ -48,16 +48,16 @@ class JobControllerTest extends WebTestCase
         $this->assertTrue($crawler->filter('.jobs td.position:contains("Expired")')->count() == 0);
 
         // only $max_jobs_on_homepage jobs are listed for a category
-        $this->assertTrue($crawler->filter('.category_programming tr')->count() == 10);
-        $this->assertTrue($crawler->filter('.category_design .more_jobs')->count() == 0);
-        $this->assertTrue($crawler->filter('.category_programming .more_jobs')->count() == 1);
+        $this->assertTrue($crawler->filter('.category_design a.jobs__job')->count() == 9);
+        $this->assertTrue($crawler->filter('.category_programming .more_jobs')->count() == 0);
+        $this->assertTrue($crawler->filter('.category_design .more_jobs')->count() == 1);
 
         // jobs are sorted by date
-        $this->assertTrue($crawler->filter('.category_programming tr')->first()->filter(sprintf('a[href*="/%d/"]', $this->getMostRecentProgrammingJob()->getId()))->count() == 1);
+        $this->assertTrue($crawler->filter('.category_design a.jobs__job')->first()->filter(sprintf('a[href*="/%d/"]', $this->getMostRecentProgrammingJob()->getId()))->count() == 1);
 
         // each job on the homepage is clickable and give detailed information
         $job = $this->getMostRecentProgrammingJob();
-        $link = $crawler->selectLink('Web Developer')->first()->link();
+        $link = $crawler-->first()->link();
         $crawler = $client->click($link);
         $this->assertEquals('Ens\TotoBundle\Controller\JobController::showAction', $client->getRequest()->attributes->get('_controller'));
         $this->assertEquals($job->getCompanySlug(), $client->getRequest()->attributes->get('company'));
