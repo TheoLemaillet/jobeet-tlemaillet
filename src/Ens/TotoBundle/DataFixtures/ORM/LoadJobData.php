@@ -65,11 +65,11 @@ class LoadJobData extends AbstractFixture implements OrderedFixtureInterface
 
 
         $controller = new JobController();
-        $em2 = $controller->getDoctrine()->getManager();
+        //$em2 = $controller->getDoctrine()->getManager();
         //$controller->createForm('Ens\TotoBundle\Form\JobType', $job_extreme_sensio);
-        //$em->persist($job_sensio_labs);
-        $em2->persist($job_extreme_sensio);
-        //$em->persist($job_expired);
+        $em->persist($job_sensio_labs);
+        $em->persist($job_extreme_sensio);
+        $em->persist($job_expired);
 
         for($i = 100; $i <= 130; $i++)
         {
@@ -86,10 +86,10 @@ class LoadJobData extends AbstractFixture implements OrderedFixtureInterface
             $job->setEmail('job@example.com');
             $job->publish();
 
-            //$em->persist($job);
+            $em->persist($job);
         }
         
-        //$em->flush();
+        $em->flush();
     }
 
     public function getOrder()

@@ -186,7 +186,7 @@ class JobController extends Controller
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
-//FIXME Verifier si j'ai bien compris ctrl+f "modifiez JobController pour utiliser le jeton"
+        //FIXME Verifier si j'ai bien compris ctrl+f "modifiez JobController pour utiliser le jeton"
     }
 
 
@@ -214,11 +214,11 @@ class JobController extends Controller
         $form = $this->createDeleteForm($job);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        //if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($job);
             $em->flush();
-        }
+        //}
 
         return $this->redirectToRoute('ens_job_index');
     }

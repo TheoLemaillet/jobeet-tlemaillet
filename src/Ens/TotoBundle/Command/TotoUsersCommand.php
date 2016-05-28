@@ -14,7 +14,7 @@ class TotoUsersCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('ens:toto:u   sers')
+            ->setName('ens:toto:users')
             ->setDescription('Add Toto users')
             ->addArgument('username', InputArgument::REQUIRED, 'The username')
             ->addArgument('password', InputArgument::REQUIRED, 'The password')
