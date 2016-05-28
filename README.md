@@ -2,7 +2,7 @@ TotoJob-Tlemaillet
 ==================
 A Symfony project created on May 19.
 
-
+Manipulation a effectuer pour installation:  
 git clone https://github.com/TheoLemaillet/jobeet-tlemaillet.git  
 cd jobeet-tlemaillet  
 composer install

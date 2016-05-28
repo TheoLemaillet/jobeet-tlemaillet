@@ -64,20 +64,60 @@ class LoadJobData extends AbstractFixture implements OrderedFixtureInterface
 
 
 
-        $controller = new JobController();
+        //$controller = new JobController();
         //$em2 = $controller->getDoctrine()->getManager();
         //$controller->createForm('Ens\TotoBundle\Form\JobType', $job_extreme_sensio);
+
         $em->persist($job_sensio_labs);
         $em->persist($job_extreme_sensio);
         $em->persist($job_expired);
 
         for($i = 100; $i <= 130; $i++)
         {
+
+            switch (random_int(1,4)) {
+                case 1:
+                    $company = 'Sensio Labs';
+                    $logo = 'sensio-labs.gif';
+                    break;
+                case 2:
+                    $company = 'Extreme Sensio';
+                    $logo = 'extreme-sensio.gif';
+                    break;
+                case 3:
+                    $company = 'Etech';
+                    $logo = 'etech.jpg';
+                    break;
+                case 4:
+                    $company = 'SoundGecko';
+                    $logo = 'soundgecko.png';
+                    break;
+            }
+            switch (random_int(1,4)) {
+                case 1:
+                    $category = 'category-programming';
+                    $job_name =  'Web Developer';
+                    break;
+                case 2:
+                    $category = 'category-design';
+                    $job_name =  'Web Designer';
+                    break;
+                case 3:
+                    $category = 'category-manager';
+                    $job_name =  'Loaf';
+                    break;
+                case 4:
+                    $category = 'category-administrator';
+                    $job_name =  'Sound Admin';
+                    break;
+            }
+
             $job = new Job();
-            $job->setCategory($em->merge($this->getReference('category-programming')));
+            $job->setCategory($em->merge($this->getReference($category)));
             $job->setType('full-time');
-            $job->setCompany('Company '.$i);
-            $job->setPosition('Web Developer');
+            $job->setCompany($company);
+            $job->setLogo($logo);
+            $job->setPosition($job_name);
             $job->setLocation('Paris, France');
             $job->setDescription('Lorem ipsum dolor sit amet, consectetur adipisicing elit.');
             $job->setHowToApply('Send your resume to lorem.ipsum [at] dolor.sit');

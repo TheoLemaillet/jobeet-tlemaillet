@@ -8,8 +8,8 @@ imports:
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
-    max_jobs_on_homepage: 10
-    max_jobs_on_category: 20
+    max_jobs_on_homepage: 9
+    max_jobs_on_category: 21
 
 framework:
     #esi:             ~

@@ -1,25 +1,31 @@
 <!-- src/Ens/TotoBundle/Resources/views/Job/list.html.twig -->
 
-<table class="jobs">
+<div class="jobs jobs--flex">
     {% for job in jobs %}
-        <tr class="{{ cycle(['even', 'odd'], loop.index) }}">
-            <td class="location">{{ job.location }}</td>
-            <td class="position">
-                <a href="{{
-                    path(
-                        'ens_job_show',
-                        {
-                            'id': job.id,
-                            'company': job.companyslug,
-                            'location': job.locationslug,
-                            'position': job.positionslug
-                        }
-                    )
-                }}">
-                    {{ job.position }}
-                </a>
-            </td>
-            <td class="company">{{ job.company }}</td>
-        </tr>
+        <a class="jobs__job {{ cycle(['even', 'odd'], loop.index) }}" href="{{
+        path(
+        'ens_job_show',
+        {
+            'id': job.id,
+            'company': job.companyslug,
+            'location': job.locationslug,
+            'position': job.positionslug
+        }
+        )
+        }}">
+            <div class="location">{{ job.location }}</div>
+            <div class="position">
+                {{ job.position }}
+
+            </div>
+            <div class="company">
+                {% if job.logo != "" %}
+                    <img src="/uploads/jobs/{{ job.logo }}"
+                         alt="{{ job.company }} logo" />
+                {% else %}
+                    {{ job.company }}
+                {% endif %}
+            </div>
+        </a>
     {% endfor %}
-</table>
+</div>
