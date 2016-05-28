@@ -6,7 +6,7 @@
             Toto Job - The Handy ones
         {% endblock %}
     </title>
-    <link rel="alternate" type="application/atom+xml" title="Latest Jobs" href="{{ url('ens_job', {'_format': 'atom'}) }}" />
+    <link rel="alternate" type="application/atom+xml" title="Latest Jobs" href="{{ url('ens_job_index', {'_format': 'atom'}) }}" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('bundles/enstoto/css/main.css') }}" type="text/css" media="all" />
@@ -60,7 +60,7 @@
                 {{ flashMessage }}
             </div>
         {% endfor %}
-        {% if app.session.hasFlash('notice') %}
+        {% if app.session.flashbag.get('notice') %}
             <div>
                 {{ app.session.flash('notice') }}
             </div>
@@ -87,7 +87,7 @@
 
             <ul>
                 <li><a href="">About TotoJob</a></li>
-                <li><a href="{{ path('ens_job', {'_format': 'atom'}) }}">Full feed</a></li>
+                <li><a href="{{ path('ens_job_index', {'_format': 'atom'}) }}">Full feed</a></li>
                 <li><a href="">TotoJob API</a></li>
                 <li class="last"><a href="">Affiliates</a></li>
             </ul>

@@ -67,7 +67,7 @@ class JobController extends Controller
                 ->getLatestPost()
                 ->getCreatedAt()
                 ->format(DATE_ATOM),
-            'feedId' => sha1($this->get('router')->generate('ens_job', array('_format'=> 'atom'), true)),
+            'feedId' => sha1($this->get('router')->generate('ens_job_index', array('_format'=> 'atom'), true)),
         ));
 
     }
