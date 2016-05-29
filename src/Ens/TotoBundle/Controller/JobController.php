@@ -60,6 +60,7 @@ class JobController extends Controller
         }
         $format = $request->getRequestFormat();
 
+//        return $this->render('EnsTotoBundle:Job:index.atom.twig', array(
         return $this->render('EnsTotoBundle:Job:index.'.$format.'.twig', array(
             'categories' => $categories,
             'lastUpdated' => $em

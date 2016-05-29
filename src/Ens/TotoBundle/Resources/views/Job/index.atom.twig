@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-
     <title>TotoJob</title>
     <subtitle>Latest Jobs</subtitle>
-    <link href="{{ url('ens_job', {'_format': 'atom'}) }}" rel="self"/>
+    <link href="{{ url('ens_job_index', {'_format': 'atom'}) }}" rel="self"/>
     <link href="{{ url('EnsTotoBundle_homepage') }}"/>
     <updated>{{ lastUpdated }}</updated>
     <author><name>TotoJob</name></author>
