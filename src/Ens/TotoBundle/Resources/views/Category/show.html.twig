@@ -11,11 +11,14 @@
 
 {% block content %}
     <div class="category">
-        <div class="feed">
-            <a href="{{ path('EnsTotoBundle_category',
+
+        <h1>
+            {{ category.name }}
+            <div class="feed">
+                <a href="{{ path('EnsTotoBundle_category',
                 { 'slug': category.slug, '_format': 'atom' }) }}">Feed</a>
-        </div>
-        <h1>{{ category.name }}</h1>
+            </div>
+        </h1>
     </div>
 
     {% include 'EnsTotoBundle:Job:list.html.twig' with {'jobs': category.activejobs} %}
